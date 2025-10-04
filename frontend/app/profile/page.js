@@ -8,14 +8,32 @@ const ProfilPage = () => {
   const [content, setContent] = useState('');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState(null);
   const router = useRouter();
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
+    const author_id = sessionStorage.getItem('author_id');
+    const getAuthorDetails = async () => {
+      try {
+        const user = await axios.get(`http://localhost:5050/user/${author_id}`);
+
+        console.log('Fetched user data:', user);
+
+        if (user.status === 200) {
+          setUser(user.data);
+          console.log('User data:', user.data);
+        }
+      } catch (error) {
+        console.error('Error fetching author details:', error);
+      }
+    };
+
+    getAuthorDetails();
     if (!token) {
-      router.push('/post', 0);
+      router.push('/');
     } else {
       setIsAuthenticated(true);
     }
@@ -26,8 +44,8 @@ const ProfilPage = () => {
     setIsLoading(true);
     setError(null);
 
-    const token = localStorage.getItem('token');
-    const author_id = localStorage.getItem('author_id');
+    const token = sessionStorage.getItem('token');
+    const author_id = sessionStorage.getItem('author_id');
 
     if (!token || !author_id) {
       setError('Not authorized');
@@ -76,6 +94,37 @@ const ProfilPage = () => {
           <h1 className="text-4xl font-extrabold text-black mb-10 border-4 border-black px-6 py-3 bg-pink-300 shadow-[6px_6px_0px_#000]">
             Upload Postingan
           </h1>
+
+          <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0px_#000] w-full max-w-3xl mb-8 text-black">
+            <h2 className="text-2xl font-extrabold mb-4 border-b-4 border-black pb-2">
+              User Details
+            </h2>
+            <div className="space-y-2 text-lg">
+              <p>
+                <span className="font-bold">Author ID:</span>
+                {/* Ganti dengan data asli */}
+                <span className="ml-2 font-mono bg-gray-200 px-2 py-1 rounded">
+                  {user ? user.id : 'Loading...'}
+                </span>
+              </p>
+              <p>
+                <span className="font-bold">Username:</span>
+                {/* Ganti dengan data asli */}
+                <span className="ml-2 font-mono bg-gray-200 px-2 py-1 rounded">
+                  {user ? user.username : 'Loading...'}
+                </span>
+              </p>
+              <p>
+                <span className="font-bold">Email:</span>
+                {/* Ganti dengan data asli */}
+                <span className="ml-2 font-mono bg-gray-200 px-2 py-1 rounded">
+                  {user ? user.email : 'Loading...'}
+                </span>
+              </p>
+            </div>
+          </div>
+          {/* --- Bagian Detail Author Selesai --- */}
+
           <form
             className="bg-white border-4 border-black rounded-lg p-6 shadow-[6px_6px_0px_#000] w-full max-w-3xl space-y-5 text-black text-xl"
             onSubmit={handleSubmit}

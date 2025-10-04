@@ -1,5 +1,6 @@
 'use client';
 
+import Navbar from '@/components/navbar';
 import { use, useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -12,7 +13,7 @@ export default function PostDetail({ params }) {
   useEffect(() => {
     setMounted(true);
 
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (token) setIsLogin(true);
     const fecthData = async () => {
       const res = await axios.get(`http://localhost:5050/posts/${id}`);

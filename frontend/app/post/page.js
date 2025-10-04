@@ -12,7 +12,7 @@ export default function PostAll() {
   useEffect(() => {
     setMounted(true);
 
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     console.log('Token:', token);
     if (token) setIsLogin(true);
 
