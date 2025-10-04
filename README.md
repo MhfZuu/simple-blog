@@ -22,7 +22,6 @@ simple-blog/
 │     └─ user.json         # (opsional) contoh data user
 ├─ frontend/
 │  ├─ app/
-│  │  ├─ page.js           # Halaman login
 │  │  ├─ post/
 │  │  │  ├─ page.js        # Daftar post
 │  │  │  └─ [id]/
