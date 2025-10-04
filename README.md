@@ -23,12 +23,14 @@ simple-blog/
 ├─ frontend/
 │  ├─ app/
 │  │  ├─ page.js           # Halaman login
-+│  │  ├─ post/
+│  │  ├─ post/
 │  │  │  ├─ page.js        # Daftar post
 │  │  │  └─ [id]/
 │  │  │     └─ page.js     # Detail post
 │  │  └─ profile/
-│  │     └─ page.js        # Halaman profil / tambah post
+│  │  |  └─ page.js        # Halaman profil / tambah post
+|  |  ├─ layout.js         # Layout
+|  |  └─ page.js           # Halaman login / main
 │  ├─ components/
 │  │  ├─ navbar.js         # Navbar
 │  │  ├─ postCard.js       # Card untuk setiap post
