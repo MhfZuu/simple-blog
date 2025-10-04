@@ -50,7 +50,7 @@ app.post('/login', (req, res) => {
 
 app.get('/user/:id', (req, res) => {
   const userId = parseInt(req.params.id, 10);
-  const data = fs.readFileSync('../data/data.json', 'utf8');
+  const data = fs.readFileSync('data/data.json', 'utf8');
   const users = JSON.parse(data).users;
   const user = users.find((u) => u.id === userId);
   if (user) {
@@ -66,7 +66,6 @@ app.get('/user/:id', (req, res) => {
 app.get('/posts', async (req, res) => {
   const posts = await getPosts();
   if (posts) {
-    console.log(posts);
     res.status(200).json({ posts });
   } else {
     res.status(404).json({ error: "User doesn't exist" });
@@ -77,7 +76,6 @@ app.get('/posts/:id', async (req, res) => {
   const posts = await getPosts();
   const post = posts.find((p) => p.id === postId);
   if (post) {
-    console.log(post);
     res.status(200).json({ post });
   } else {
     res.status(404).json({ error: 'Post not found' });

@@ -35,6 +35,13 @@
       "content": "Iki isi konten nomer limo",
       "author_id": 2,
       "created_at": "2025-10-02T07:22:17.683Z"
+    },
+    {
+      "id": 6,
+      "title": "Ini Judul Post 6",
+      "content": "Ini isi dari kontent postingan ke 6. Isinya adalah ........................................",
+      "author_id": 2,
+      "created_at": "2025-10-04T03:14:19.713Z"
     }
   ],
   "users": [
